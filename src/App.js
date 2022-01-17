@@ -34,8 +34,8 @@ const StyledButton = styled.button`
 `;
 
 function App() {
-  const initialPost = {id:null,author:'',title:'',content:'',important:false}
-  const [form,setForm] = useState(initialPost)
+  const initialForm = {id:null,author:'',title:'',content:'',important:false}
+  const [form,setForm] = useState(initialForm)
 
   const [posts,setPosts] = useState([])
 
