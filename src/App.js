@@ -5,6 +5,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import RadioList from './components/RadioList';
 import PostList from './components/PostList';
 import Form from './components/Form';
+import { getPosts,createPost } from './services/postsService';
 
 
 const StyledSection = styled.section`
@@ -20,6 +21,8 @@ const StyledSection = styled.section`
   pequeno posible, salvo la logica del filtro que aun no se como hacerla con un reducer */
 
 function App() {
+
+
   return (
     <StyledSection>
     <Form />

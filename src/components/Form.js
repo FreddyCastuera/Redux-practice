@@ -3,6 +3,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { v4 }  from 'uuid';
 import styled from "styled-components";
 import Input from "./Input";
+import { createPost } from '../services/postsService';
 
 const StyledForm = styled.form`
   display:flex;
@@ -15,13 +16,15 @@ const Form = () => {
     const dispatch = useDispatch()
     const form = useSelector(state=>state.form)
 
-    const handleChange = (event)=>{
+    const handleChange = async (event)=>{
         const {name,value} = event.target
         dispatch({type:'INPUT_CHANGE',name:name,value:value})
     }
-    const handleAddPost = (e) =>{
+    const handleAddPost = async (e) =>{
         e.preventDefault()
-        dispatch({type:'ADD_POST',payload:{...form,id:v4()}})
+        const payload = {...form,id:v4()}
+        dispatch({type:'ADD_POST',payload:payload})
+        createPost(payload)
         dispatch({type:'CLEAN_FORM'})
     }
 

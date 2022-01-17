@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector,useDispatch } from 'react-redux';
+import { deletePost,getPost,updatePost } from '../services/postsService';
 
 
 const StyledButton = styled.button`
@@ -13,17 +14,22 @@ const StyledButton = styled.button`
 
 const Post = ({id,author,title,content,important,likes}) => {
     const dispatch= useDispatch()
-    const handleToggleImportance = (event) =>{  
+    const handleToggleImportance = async (event) =>{  
         const {id} = event.target
         dispatch({type:'TOGGLE_IMPORTANCE',id:id})
+        const postToUpdate = await getPost(id)
+        await updatePost(id,{...postToUpdate,important:!postToUpdate.important})
       }
-      const handleLike = (event)=>{
+      const handleLike = async (event)=>{
         const {id} = event.target
         dispatch({type:'ADD_LIKE',id:id})
+        const postToUpdate = await getPost(id)
+        await updatePost(id,{...postToUpdate,likes:postToUpdate.likes+1})
       }
-      const handleDelete = (event) =>{
+      const handleDelete = async (event) =>{
         const {id} = event.target
         dispatch({type:'DELETE_POST',id:id})
+        await deletePost(id)
       }
     
 
