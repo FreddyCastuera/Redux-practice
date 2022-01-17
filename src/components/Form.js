@@ -22,7 +22,7 @@ const Form = () => {
     const handleAddPost = (e) =>{
         e.preventDefault()
         dispatch({type:'ADD_POST',payload:{...form,id:v4()}})
-        dispatch({type:'CLEAR_FORM'})
+        dispatch({type:'CLEAN_FORM'})
     }
 
     return (

@@ -18,12 +18,8 @@ const postsReducer = (state=[],action)=>{
   }  
   const filterReducer = (state='all',action) =>{
      switch(action.type){
-       case 'ALL':
-         return 'all'
-        case 'IMPORTANT':
-          return 'important'
-        case 'NOT_IMPORTANT':
-          return 'not important'
+       case 'SET_FILTER':
+         return action.filter
         default:
           return state
      }

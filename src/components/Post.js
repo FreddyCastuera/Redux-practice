@@ -28,7 +28,7 @@ const Post = ({id,author,title,content,important,likes}) => {
     
 
     return (
-        <li key={id} > 
+        <li> 
             <section style={{border:"2px solid black",borderRadius:'1rem',padding:"1rem",margin:'1rem 0'}}>
               <h2>{title}</h2>
               <p>{content}</p>

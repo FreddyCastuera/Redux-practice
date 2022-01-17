@@ -15,7 +15,7 @@ const PostList = ({filteredPosts}) => {
     return (
         <StyledUl>
         {!!filteredPosts.length && filteredPosts.map(({id,author,title,content,important,likes})=>{
-          return <Post 
+          return <Post key={id}
             id={id}
             author={author}
             title={title}
