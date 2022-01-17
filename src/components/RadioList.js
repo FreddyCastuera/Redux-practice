@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from 'react-redux';
 
 const RadioList = () => {
     const dispatch = useDispatch()
-    const filter = useSelector(state=>state.filterReducer)
+    const filter = useSelector(state=>state.filter)
 
     const handleFilter = (event) =>{
         const {value} = event.target 

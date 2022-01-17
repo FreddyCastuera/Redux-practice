@@ -37,9 +37,9 @@ const postsReducer = (state=[],action)=>{
     }
   }
   const reducers = combineReducers({
-    postsReducer,
-    filterReducer,
-    formReducer
+    posts:postsReducer,
+    filter:filterReducer,
+    form:formReducer
   })
   const store = createStore(reducers,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

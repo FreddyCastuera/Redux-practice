@@ -13,7 +13,7 @@ const StyledForm = styled.form`
 
 const Form = () => {
     const dispatch = useDispatch()
-    const form = useSelector(state=>state.formReducer)
+    const form = useSelector(state=>state.form)
 
     const handleChange = (event)=>{
         const {name,value} = event.target

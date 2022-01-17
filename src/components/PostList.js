@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Post from './Post';
+import { useSelector } from 'react-redux';
 
 const StyledUl = styled.ul`
   display:flex;
@@ -11,10 +12,22 @@ const StyledUl = styled.ul`
   width:100%
 `;
 
-const PostList = ({filteredPosts}) => {
+const PostList = () => {
+    const posts = useSelector(state=>{
+        switch(state.filter){
+            case 'all':
+                return state.posts
+            case 'important':
+                return state.posts.filter(post=>post.important===true)
+            case 'not important':
+                return state.posts.filter(post=>post.important===false)
+            default:
+                return state.posts
+        }
+    })
     return (
         <StyledUl>
-        {!!filteredPosts.length && filteredPosts.map(({id,author,title,content,important,likes})=>{
+        {!!posts.length && posts.map(({id,author,title,content,important,likes})=>{
           return <Post key={id}
             id={id}
             author={author}
