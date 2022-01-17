@@ -11,7 +11,7 @@ const StyledUl = styled.ul`
   width:100%
 `;
 
-const PostList = ({filteredPosts,handleToggleImportance,handleLike,handleDelete}) => {
+const PostList = ({filteredPosts}) => {
     return (
         <StyledUl>
         {!!filteredPosts.length && filteredPosts.map(({id,author,title,content,important,likes})=>{
@@ -21,11 +21,7 @@ const PostList = ({filteredPosts,handleToggleImportance,handleLike,handleDelete}
             title={title}
             content={content}
             important={important}
-            handleToggleImportance={handleToggleImportance}
             likes={likes}
-            handleLike={handleLike}
-            handleDelete={handleDelete}
-
           />
         })}
       </StyledUl>

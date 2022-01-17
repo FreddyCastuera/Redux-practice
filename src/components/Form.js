@@ -11,22 +11,17 @@ const StyledForm = styled.form`
   margin-bottom:1rem;
 `;
 
-
 const Form = () => {
     const dispatch = useDispatch()
     const form = useSelector(state=>state.formReducer)
 
     const handleChange = (event)=>{
         const {name,value} = event.target
-        //setForm({...form,[name]:value})
         dispatch({type:'INPUT_CHANGE',name:name,value:value})
     }
     const handleAddPost = (e) =>{
         e.preventDefault()
-        //setPosts([...posts,{...form,id:v4()}])
         dispatch({type:'ADD_POST',payload:{...form,id:v4()}})
-        //console.log(posts)
-        //setForm(initialForm)
         dispatch({type:'CLEAR_FORM'})
     }
 

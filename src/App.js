@@ -16,74 +16,17 @@ const StyledSection = styled.section`
   margin:2rem auto;
 `;
 
-
+/*movimos toda la logia de estado a sus respectivos reducers y logramos mantener el componente app lo mas
+  pequeno posible, salvo la logica del filtro que aun no se como hacerla con un reducer */
 
 
 function App() {
-  const dispatch = useDispatch()
-  const form = useSelector(state=>state.formReducer)
   const posts = useSelector(state=>state.postsReducer)
   const filter = useSelector(state=>state.filterReducer)
-  const state = useSelector(state=>state)
-
-
-  //----------------------logica de formulario------------------------------------
-  //const initialForm = {id:null,author:'',title:'',content:'',important:false,likes:0}
-  //const [form,setForm] = useState(initialForm)
-
-  // const handleChange = (event)=>{
-  //   const {name,value} = event.target
-  //   //setForm({...form,[name]:value})
-  //   dispatch({type:'INPUT_CHANGE',name:name,value:value})
-  // }
-  //-------------------------------------------------------------------------------
-
-  //-------------------------logica de creacion,actualizacion y eliminacion de posts------------
-  //const [posts,setPosts] = useState([])
-
-
-  // const handleAddPost = (e) =>{
-  //   e.preventDefault()
-  //   //setPosts([...posts,{...form,id:v4()}])
-  //   dispatch({type:'ADD_POST',payload:{...form,id:v4()}})
-  //   console.log(posts)
-  //   //setForm(initialForm)
-  //   dispatch({type:'CLEAR_FORM'})
-  // }
-
-  // const handleToggleImportance = (event) =>{  
-  //   const {id} = event.target
-  //   // const updatedPosts = posts.map(post=>{
-  //   //   return post.id===id?{...post,important:!post.important}:post
-  //   // })
-  //   dispatch({type:'TOGGLE_IMPORTANCE',id:id})
-  //   // setPosts(updatedPosts)
-  // }
-  // const handleLike = (event)=>{
-  //   const {id} = event.target
-  //   dispatch({type:'ADD_LIKE',id:id})
-  // }
-  // const handleDelete = (event) =>{
-  //   const {id} = event.target
-  //   // const filteredPost = posts.filter(post=>post.id!==id)
-  //   dispatch({type:'DELETE_POST',id:id})
-  //   // setPosts(filteredPost)
-  // }
-  //------------------------------------------------------------------------------------------------
-
-  //---------------logia del filtro por importancia--------------------------------------------------
-  //const [filterBy,setFilterBy] = useState('all')
-
-  // const handleFilter = (event) =>{
-  //   const {value:type} = event.target 
-  //   dispatch({type:type})
-  // }
-    
 
   const [filteredPosts,setFilteredPost] = useState(posts)
 
   useEffect(()=>{
-    console.log(state)
     switch(filter){
       case 'all':
         setFilteredPost(posts)
@@ -101,7 +44,6 @@ function App() {
     }
   },[filter,posts])
 
-  //---------------------------------------------------------------------------------------------------
 
   return (
     <StyledSection>

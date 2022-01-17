@@ -15,11 +15,7 @@ const Post = ({id,author,title,content,important,likes}) => {
     const dispatch= useDispatch()
     const handleToggleImportance = (event) =>{  
         const {id} = event.target
-        // const updatedPosts = posts.map(post=>{
-        //   return post.id===id?{...post,important:!post.important}:post
-        // })
         dispatch({type:'TOGGLE_IMPORTANCE',id:id})
-        // setPosts(updatedPosts)
       }
       const handleLike = (event)=>{
         const {id} = event.target
@@ -27,9 +23,7 @@ const Post = ({id,author,title,content,important,likes}) => {
       }
       const handleDelete = (event) =>{
         const {id} = event.target
-        // const filteredPost = posts.filter(post=>post.id!==id)
         dispatch({type:'DELETE_POST',id:id})
-        // setPosts(filteredPost)
       }
     
 
