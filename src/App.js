@@ -2,7 +2,7 @@ import './App.css';
 import {useState,useEffect} from 'react'
 import { v4 }  from 'uuid';
 import styled from 'styled-components'
-import { createStore } from 'redux';
+import { createStore,combineReducers } from 'redux';
 
 const StyledForm = styled.form`
   display:flex;
@@ -45,17 +45,26 @@ const postsReducer = (state=[],action)=>{
       return state
   }
 }  
-const store = createStore(postsReducer)
+const filterReducer = (state='all',action) =>{
+   switch(action.type){
+     case 'ALL':
+       return 'all'
+      case 'IMPORTANT':
+        return 'important'
+      case 'NOT_IMPORTANT':
+        return 'not important'
+      default:
+        return 'all'
+   }
+}
 
-
-
+const reducers = combineReducers({
+  postsReducer,
+  filterReducer
+})
+const store = createStore(reducers)
 
 function App() {
-
-  
-
-
-
   //----------------------logica de formulario------------------------------------
   const initialForm = {id:null,author:'',title:'',content:'',important:false}
   const [form,setForm] = useState(initialForm)
@@ -68,11 +77,6 @@ function App() {
 
   //-------------------------logica de creacion,actualizacion y eliminacion de posts------------
   const [posts,setPosts] = useState([])
-  
-  store.subscribe(()=>{
-    console.log(store.getState())
-    setPosts(store.getState())
-  })
 
 
   const handleAddPost = (e) =>{
@@ -102,10 +106,16 @@ function App() {
   const [filterBy,setFilterBy] = useState('all')
 
   const handleFilter = (event) =>{
-    const {value} = event.target 
-    setFilterBy(value)
+    const {value:type} = event.target 
+    store.dispatch({type:type})
   }
-  
+    
+  store.subscribe(()=>{
+    const {postsReducer:posts,filterReducer:filter} = store.getState()
+    setPosts(posts)
+    setFilterBy(filter)
+    
+  })
   const [filteredPosts,setFilteredPost] = useState(posts)
 
   useEffect(()=>{
@@ -162,15 +172,15 @@ function App() {
         <span>filter by: </span>
         <div>
           <label htmlFor="all">all</label>
-          <input id='all' type="radio" value='all' name='filter'  onChange={handleFilter} checked={filterBy==='all'}/>
+          <input id='all' type="radio" value='ALL' name='filter' onChange={handleFilter} checked={filterBy==='all'}/>
         </div>
         <div>
           <label htmlFor="important">important</label>
-          <input id='important' type="radio" value='important' name='filter' onChange={handleFilter} checked={filterBy==='important'}/>
+          <input id='important' type="radio" value='IMPORTANT' name='filter' onChange={handleFilter} checked={filterBy==='important'}/>
         </div>
         <div>
           <label htmlFor="not important">not important</label>
-          <input id='not important' type="radio" value='not important' name='filter' onChange={handleFilter} checked={filterBy==='not important'}/>
+          <input id='not important' type="radio" value='NOT_IMPORTANT' name='filter' onChange={handleFilter} checked={filterBy==='not important'}/>
         </div>
       </section>
     <StyledUl>
