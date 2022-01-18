@@ -16,20 +16,23 @@ const Post = ({id,author,title,content,important,likes}) => {
     const dispatch= useDispatch()
     const handleToggleImportance = async (event) =>{  
         const {id} = event.target
-        dispatch({type:'TOGGLE_IMPORTANCE',id:id})
         const postToUpdate = await getPost(id)
         await updatePost(id,{...postToUpdate,important:!postToUpdate.important})
+        dispatch({type:'TOGGLE_IMPORTANCE',id:id})
+       
       }
       const handleLike = async (event)=>{
         const {id} = event.target
-        dispatch({type:'ADD_LIKE',id:id})
         const postToUpdate = await getPost(id)
         await updatePost(id,{...postToUpdate,likes:postToUpdate.likes+1})
+        dispatch({type:'ADD_LIKE',id:id})
+        
       }
       const handleDelete = async (event) =>{
         const {id} = event.target
-        dispatch({type:'DELETE_POST',id:id})
         await deletePost(id)
+        dispatch({type:'DELETE_POST',id:id})
+        
       }
     
 

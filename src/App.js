@@ -19,8 +19,16 @@ const StyledSection = styled.section`
 
 /*movimos toda la logia de estado a sus respectivos reducers y logramos mantener el componente app lo mas
   pequeno posible, salvo la logica del filtro que aun no se como hacerla con un reducer */
+//falta el filtro por contenido, usar router y crear hooks para campo de formulario y peticiones 
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    (async ()=>{
+      const posts = await getPosts()
+      dispatch({type:'INIT_POSTS',posts:posts})
+    })()
+  },[])
 
 
   return (

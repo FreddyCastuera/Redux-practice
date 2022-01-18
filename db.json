@@ -1,20 +1,20 @@
 {
   "posts": [
     {
-      "id": "aa73a38d-6755-46d2-b3f4-d1934d5b4d3c",
-      "author": "fdsafasd",
-      "title": "fdsafsda",
-      "content": "sdafsda",
-      "important": false,
-      "likes": 44
+      "id": "52bea9e2-6413-48f7-890f-5a1bb125c143",
+      "author": "",
+      "title": "",
+      "content": "",
+      "important": true,
+      "likes": 9
     },
     {
-      "id": "524b83e7-f6e4-436a-a880-2f3675e4bd15",
-      "author": "sdafsda",
-      "title": "fdsfasd",
-      "content": "fsdfsda",
+      "id": "99fc69ff-d38e-40e7-b3c5-995acbccaf73",
+      "author": "jorge",
+      "title": "alfredo",
+      "content": "castuera",
       "important": false,
-      "likes": 9
+      "likes": 0
     }
   ]
 }
